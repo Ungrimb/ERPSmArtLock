@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
 
-namespace ERPSmArtLock.Models
+namespace ERP.Models
 {
-    public partial class Users : IEntity
+    public class UpdateModel
     {
         public int Id { get; set; }
         public string UserName { get; set; }

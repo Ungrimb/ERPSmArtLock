@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ERPSmArtLock.Models
 {
-    public partial class Locklist1
+    public partial class Locklist1 : IEntity
     {
-        public int LockId { get; set; }
+        public int Id { get; set; }
         public int OwnerId { get; set; }
         public int BuildingId { get; set; }
         public string LockImage { get; set; }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ERPSmArtLock.Models
+namespace ERPSmArtLock.Entities
 {
-    public partial class Users : IEntity
+    public class User
     {
         public int Id { get; set; }
         public string UserName { get; set; }

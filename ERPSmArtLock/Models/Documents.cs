@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ERPSmArtLock.Models
 {
-    public partial class Documents
+    public partial class Documents : IEntity
     {
         public int Id { get; set; }
         public int UserId { get; set; }

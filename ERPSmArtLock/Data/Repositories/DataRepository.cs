@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ERPSmArtLock.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace ERPSmArtLock.Data.Repositories
 {
-    public abstract class GenericRepository<TEntity, TContext> : IDataRepository<TEntity>
+    public abstract class DataRepository<TEntity, TContext> : IDataRepository<TEntity>
         where TEntity : class, IEntity
         where TContext : DbContext
     {
         // attribute context data base 
         private readonly TContext context;
         // constructor
-        public GenericRepository(TContext context)
+        public DataRepository(TContext context)
         {
             this.context = context;
         }

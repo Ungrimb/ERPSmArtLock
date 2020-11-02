@@ -1,4 +1,5 @@
 ﻿using System;
+using ERPSmArtLock.Entities;
 using ERPSmArtLock.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -24,14 +25,15 @@ namespace ERPSmArtLock.Data
         public virtual DbSet<LockList> LockList { get; set; }
         public virtual DbSet<Locklist1> Locklist1 { get; set; }
         public virtual DbSet<Settings> Settings { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySQL("server=lhcp1043.webapps.net;user=ge24skod_root;password=SmartLock123$%^;persistsecurityinfo=True;database=ge24skod_smart_lock");
+                optionsBuilder.UseMySQL("server=lhcp1043.webapps.net;user=ge24skod_root;password=SmartLock123$%^;persistsecurityinfo=True;database=ge24skod_smart_lock_2");
             }
         }
 
@@ -149,12 +151,12 @@ namespace ERPSmArtLock.Data
 
             modelBuilder.Entity<BuildingList>(entity =>
             {
-                entity.HasKey(e => e.BuildingId)
+                entity.HasKey(e => e.Id)
                     .HasName("PRIMARY");
 
                 entity.ToTable("building_list");
 
-                entity.Property(e => e.BuildingId)
+                entity.Property(e => e.Id)
                     .HasColumnName("buildingId")
                     .HasColumnType("int(11)");
 
@@ -276,12 +278,12 @@ namespace ERPSmArtLock.Data
 
             modelBuilder.Entity<LockList>(entity =>
             {
-                entity.HasKey(e => e.LockId)
+                entity.HasKey(e => e.Id)
                     .HasName("PRIMARY");
 
                 entity.ToTable("lock_list");
 
-                entity.Property(e => e.LockId)
+                entity.Property(e => e.Id)
                     .HasColumnName("lockId")
                     .HasColumnType("int(11)");
 
@@ -330,12 +332,12 @@ namespace ERPSmArtLock.Data
 
             modelBuilder.Entity<Locklist1>(entity =>
             {
-                entity.HasKey(e => e.LockId)
+                entity.HasKey(e => e.Id)
                     .HasName("PRIMARY");
 
                 entity.ToTable("locklist");
 
-                entity.Property(e => e.LockId)
+                entity.Property(e => e.Id)
                     .HasColumnName("lockId")
                     .HasColumnType("int(11)");
 
@@ -406,12 +408,12 @@ namespace ERPSmArtLock.Data
 
             modelBuilder.Entity<Users>(entity =>
             {
-                entity.HasKey(e => e.UserId)
+                entity.HasKey(e => e.Id)
                     .HasName("PRIMARY");
 
                 entity.ToTable("users");
 
-                entity.Property(e => e.UserId)
+                entity.Property(e => e.Id)
                     .HasColumnName("userId")
                     .HasColumnType("int(11)");
 

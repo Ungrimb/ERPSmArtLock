@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ERPSmArtLock.Models
 {
-    public partial class BuildingList
+    public partial class BuildingList : IEntity
     {
-        public int BuildingId { get; set; }
+        public int Id { get; set; }
         public int OwnerId { get; set; }
         public string BuildingName { get; set; }
         public string OwnerName { get; set; }

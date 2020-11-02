@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ERPSmArtLock.Models
+namespace ERPSmArtLock.Helpers
 {
-    public interface IEntity
+    public class AppSettings
     {
-
-        int Id { get; set; }
-
+        public string Secret { get; set; }
     }
 }
