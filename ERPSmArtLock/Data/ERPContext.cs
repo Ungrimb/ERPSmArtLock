@@ -1,8 +1,6 @@
-﻿using System;
-using ERPSmArtLock.Entities;
+﻿using ERPSmArtLock.Entities;
 using ERPSmArtLock.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ERPSmArtLock.Data
 {

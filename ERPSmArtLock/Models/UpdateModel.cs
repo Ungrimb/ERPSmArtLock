@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace ERP.Models
+namespace ERPSmArtLock.Models
 {
     public class UpdateModel
     {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ERPSmArtLock.Data.Repositories
 {
-    interface IDataRepository <TEntity> where TEntity : class, IEntity
+    public interface IDataRepository <TEntity> where TEntity : class, IEntity
     {
 
         Task<List<TEntity>> GetAll();

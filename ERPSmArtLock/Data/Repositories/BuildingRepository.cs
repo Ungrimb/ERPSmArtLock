@@ -1,4 +1,5 @@
 ﻿using ERPSmArtLock.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,13 +25,11 @@ namespace ERPSmArtLock.Data.Repositories
 
         public override async Task<BuildingList> Get(int id)
         {
-            var buildingList = await _context.BuildingList
+            return await _context.BuildingList
                 .SingleOrDefaultAsync(p => p.Id == id);
-
-            return buildingList;
         }
 
-        public async Task<BuildingList> AddProduct(BuildingList buildingList)
+        public async Task<BuildingList> AddBuildingList(BuildingList buildingList)
         {
 
             var newBuildingList = new BuildingList();
@@ -53,6 +52,15 @@ namespace ERPSmArtLock.Data.Repositories
             await _context.SaveChangesAsync();
 
             return newBuildingList;
+        }
+        public async Task<ActionResult<BuildingList>> DeleteBuildingList([FromBody] int id)
+        {
+            var buildingList = await _context.BuildingList.FindAsync(id);
+
+            _context.BuildingList.Remove(buildingList);
+            await _context.SaveChangesAsync();
+
+            return buildingList;
         }
 
     }

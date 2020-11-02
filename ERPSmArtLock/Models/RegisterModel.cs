@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 
-namespace ERP.Models
+namespace ERPSmArtLock.Models
 {
     public class RegisterModel
     {

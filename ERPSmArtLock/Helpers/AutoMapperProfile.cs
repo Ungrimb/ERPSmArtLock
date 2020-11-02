@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
-using ERP.Models;
-using ERPSmArtLock.Entities;
 using ERPSmArtLock.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using ERPSmArtLock.Entities;
 
 namespace ERPSmArtLock.Helpers
 {

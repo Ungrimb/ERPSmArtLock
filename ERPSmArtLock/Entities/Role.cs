@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ERPSmArtLock.Entities
+﻿namespace ERPSmArtLock.Entities
 {
     public static class Role
     {
