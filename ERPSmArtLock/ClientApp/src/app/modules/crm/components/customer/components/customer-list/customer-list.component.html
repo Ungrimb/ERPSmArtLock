@@ -1,0 +1,46 @@
+<section class="sample-app-content">
+    <nav class="navbar  navbar-expand-sm navbar-dark bg-dark">
+        <a routerLink="/dashboard" class="nav-link text-white">Dashboard</a>
+        <a routerLink="/addcustomer" class="nav-link text-white"><i class="fas fa-plus-circle"></i> Add customer</a>
+    </nav>
+    <h2 class="h2 text-center mt-2">Customers</h2>
+    <div class="card-body">
+        <table class="table table-bordered table-center">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Lastname</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let customer of customers">
+
+                    <a routerLink="/detailcus/{{customer.id}}">
+                        <td>{{customer.name}}</td>
+                    </a>
+
+                    <td style="color:black;"> {{customer.lastName}}</td>
+                    <td style="color:black;"> {{customer.phoneNumber}}</td>
+                    <td style="color:black;"> {{customer.email}}</td>
+                    <td>
+                        <ul>
+                            <li class="list-inline-item">
+
+                                <a routerLink="/updatecus/{{customer.id}}">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <button (click)="delete(customer.id)" class="btn-delete">
+                                    <i class="fas fa-trash"></i>Delete
+                                </button>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>

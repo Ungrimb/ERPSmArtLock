@@ -1,34 +1,54 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// Helpers
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+// Components
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AdminComponent } from './admin/admin/admin.component';
+import { CarrouselComponent } from './components/shared/carrousel/carrousel/carrousel.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LoginComponent } from './login/login/login.component';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { RegisterComponent } from './register/register/register.component';
+import { SidebarComponent } from './components/shared/sidebar/sidebar/sidebar.component';
+
+// Modules
+import { BuildingModule } from './modules/buildings/building.module';
+import { OrdersModule } from './modules/sales/components/orders.module';
+import { CrmModule } from './modules/crm/crm.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent
+    AdminComponent,
+    DashboardComponent,
+    HeaderComponent,
+    FooterComponent,
+    LoginComponent,
+    RegisterComponent,
+    SidebarComponent,
+    CarrouselComponent,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule,
     HttpClientModule,
+    AppRoutingModule,
     FormsModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    ReactiveFormsModule,
+    BuildingModule,
+    OrdersModule,
+    CrmModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

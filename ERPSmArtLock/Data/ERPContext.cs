@@ -21,10 +21,9 @@ namespace ERPSmArtLock.Data
         public virtual DbSet<Documents> Documents { get; set; }
         public virtual DbSet<EventList> EventList { get; set; }
         public virtual DbSet<LockList> LockList { get; set; }
-        public virtual DbSet<Locklist1> Locklist1 { get; set; }
         public virtual DbSet<Settings> Settings { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Users> User { get; set; }
+        public DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -328,83 +327,83 @@ namespace ERPSmArtLock.Data
                     .HasMaxLength(255);
             });
 
-            modelBuilder.Entity<Locklist1>(entity =>
-            {
-                entity.HasKey(e => e.Id)
-                    .HasName("PRIMARY");
+            //modelBuilder.Entity<Locklist1>(entity =>
+            //{
+            //    entity.HasKey(e => e.Id)
+            //        .HasName("PRIMARY");
 
-                entity.ToTable("locklist");
+            //    entity.ToTable("locklist");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("lockId")
-                    .HasColumnType("int(11)");
+            //    entity.Property(e => e.Id)
+            //        .HasColumnName("lockId")
+            //        .HasColumnType("int(11)");
 
-                entity.Property(e => e.AllowedUsers)
-                    .HasColumnName("allowedUsers")
-                    .HasColumnType("int(11)");
+            //    entity.Property(e => e.AllowedUsers)
+            //        .HasColumnName("allowedUsers")
+            //        .HasColumnType("int(11)");
 
-                entity.Property(e => e.BuildingId)
-                    .HasColumnName("buildingId")
-                    .HasColumnType("int(11)");
+            //    entity.Property(e => e.BuildingId)
+            //        .HasColumnName("buildingId")
+            //        .HasColumnType("int(11)");
 
-                entity.Property(e => e.CheckIn).HasColumnName("checkIn");
+            //    entity.Property(e => e.CheckIn).HasColumnName("checkIn");
 
-                entity.Property(e => e.CheckOut).HasColumnName("checkOut");
+            //    entity.Property(e => e.CheckOut).HasColumnName("checkOut");
 
-                entity.Property(e => e.IsFavorite)
-                    .HasColumnName("isFavorite")
-                    .HasColumnType("int(11)");
+            //    entity.Property(e => e.IsFavorite)
+            //        .HasColumnName("isFavorite")
+            //        .HasColumnType("int(11)");
 
-                entity.Property(e => e.IsLimited)
-                    .HasColumnName("isLimited")
-                    .HasColumnType("int(11)");
+            //    entity.Property(e => e.IsLimited)
+            //        .HasColumnName("isLimited")
+            //        .HasColumnType("int(11)");
 
-                entity.Property(e => e.LockImage)
-                    .IsRequired()
-                    .HasColumnName("lockImage")
-                    .HasMaxLength(255);
+            //    entity.Property(e => e.LockImage)
+            //        .IsRequired()
+            //        .HasColumnName("lockImage")
+            //        .HasMaxLength(255);
 
-                entity.Property(e => e.OwnerId)
-                    .HasColumnName("ownerId")
-                    .HasColumnType("int(11)");
+            //    entity.Property(e => e.OwnerId)
+            //        .HasColumnName("ownerId")
+            //        .HasColumnType("int(11)");
 
-                entity.Property(e => e.Qrcode)
-                    .IsRequired()
-                    .HasColumnName("qrcode")
-                    .HasMaxLength(255);
+            //    entity.Property(e => e.Qrcode)
+            //        .IsRequired()
+            //        .HasColumnName("qrcode")
+            //        .HasMaxLength(255);
 
-                entity.Property(e => e.RoomName)
-                    .IsRequired()
-                    .HasColumnName("roomName")
-                    .HasMaxLength(255);
-            });
+            //    entity.Property(e => e.RoomName)
+            //        .IsRequired()
+            //        .HasColumnName("roomName")
+            //        .HasMaxLength(255);
+            //});
 
-            modelBuilder.Entity<Settings>(entity =>
-            {
-                entity.ToTable("settings");
+            //modelBuilder.Entity<Settings>(entity =>
+            //{
+            //    entity.ToTable("settings");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .HasColumnType("int(11)");
+            //    entity.Property(e => e.Id)
+            //        .HasColumnName("id")
+            //        .HasColumnType("int(11)");
 
-                entity.Property(e => e.Aboutus)
-                    .IsRequired()
-                    .HasColumnName("aboutus");
+            //    entity.Property(e => e.Aboutus)
+            //        .IsRequired()
+            //        .HasColumnName("aboutus");
 
-                entity.Property(e => e.Privacy)
-                    .IsRequired()
-                    .HasColumnName("privacy");
+            //    entity.Property(e => e.Privacy)
+            //        .IsRequired()
+            //        .HasColumnName("privacy");
 
-                entity.Property(e => e.SupportEmail)
-                    .IsRequired()
-                    .HasColumnName("support_email");
+            //    entity.Property(e => e.SupportEmail)
+            //        .IsRequired()
+            //        .HasColumnName("support_email");
 
-                entity.Property(e => e.Terms)
-                    .IsRequired()
-                    .HasColumnName("terms");
-            });
+            //    entity.Property(e => e.Terms)
+            //        .IsRequired()
+            //        .HasColumnName("terms");
+            //});
 
-            modelBuilder.Entity<Users>(entity =>
+            modelBuilder.Entity<UsersModel>(entity =>
             {
                 entity.HasKey(e => e.Id)
                     .HasName("PRIMARY");

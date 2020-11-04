@@ -8,9 +8,9 @@ namespace ERPSmArtLock.Helpers
     {
         public AutoMapperProfile ( )
         {
-            CreateMap<User, Users> ();
-            CreateMap<RegisterModel, User> ();
-            CreateMap<UpdateModel, User> ();
+            CreateMap<Users, UsersModel> ();
+            CreateMap<RegisterModel, Users> ();
+            CreateMap<UpdateModel, Users> ();
         }
     }
 }

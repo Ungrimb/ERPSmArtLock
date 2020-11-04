@@ -6,13 +6,13 @@ namespace ERPSmArtLock.Helpers
 {
     public static class ExtensionMethods
     {
-        public static IEnumerable<User> WithoutPasswords(this IEnumerable<User> users )
+        public static IEnumerable<Users> WithoutPasswords(this IEnumerable<Users> users )
         {
             if(users == null) return null;
             return users.Select ( x => x.WithoutPassword () );
         }
 
-        public static User WithoutPassword(this User user )
+        public static Users WithoutPassword(this Users user )
         {
             if(user == null) return null;
 

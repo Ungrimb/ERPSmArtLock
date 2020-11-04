@@ -1,0 +1,91 @@
+/* DashboardComponent's private CSS styles */
+
+[class*='col-'] {
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 20px;
+}
+
+[class*='col-']:last-of-type {
+    padding-right: 0;
+}
+
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.grid {
+    position: absolute;
+    top: 350px;
+    left: 220px;
+}
+
+.col-1-8 {
+    width: 25%;
+}
+
+.product-img {
+    width: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card {
+    background-color: #395c7e;
+}
+
+a:hover {
+    color: grey;
+    text-decoration: none;
+}
+
+.grid-pad {
+    margin: 10px;
+    padding: 10px 0;
+}
+
+.grid-pad>[class*='col-']:last-of-type {
+    padding-right: 20px;
+}
+
+@media (min-width: 1266px) {
+    .grid {
+        position: absolute;
+        top: 350px;
+        left: 350px;
+    }
+    .col-1-8 {
+        width: 25%;
+    }
+}
+
+@media (max-width: 900px) {
+    .module {
+        font-size: 10px;
+        max-height: 75px;
+    }
+    .h3-buildings {
+        font-size: 15px;
+        position: relative;
+        right: 0px;
+        margin: 10px;
+        font-weight: bold;
+    }
+}
+
+@media (max-width: 600px) {
+    .module {
+        font-size: 10px;
+        max-height: 75px;
+    }
+    .h3-buildings {
+        font-size: 15px;
+        font-weight: bold;
+        position: relative;
+        right: 150px;
+    }
+}

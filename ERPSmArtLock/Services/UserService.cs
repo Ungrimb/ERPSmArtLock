@@ -15,11 +15,11 @@ namespace ERPSmArtLock.Services
 {
     public interface IUserService
     {
-        User Authenticate ( string username, string password );
-        IEnumerable<User> GetAll ( );
-        User GetById ( int id );
-        User Create ( User user, string password );
-        User Update ( User user, string password = null );
+        Users Authenticate ( string username, string password );
+        IEnumerable<Users> GetAll ( );
+        Users GetById ( int id );
+        Users Create ( Users user, string password );
+        Users Update ( Users user, string password = null );
         void Delete ( int id );
     }
     public class UserService : IUserService
@@ -32,7 +32,7 @@ namespace ERPSmArtLock.Services
             _context = context;
             _appSettings = appSettings.Value;
         }
-       public User Authenticate ( string username, string password )
+       public Users Authenticate ( string username, string password )
         {
 
             if(string.IsNullOrEmpty ( username ) || string.IsNullOrEmpty ( password ))
@@ -64,17 +64,17 @@ namespace ERPSmArtLock.Services
             return user.WithoutPassword();
         }
 
-        public IEnumerable<User> GetAll ( )
+        public IEnumerable<Users> GetAll()
         {
             return _context.Users.WithoutPasswords();
         }
 
-        public User GetById ( int id )
+        public Users GetById ( int id )
         {
-            return _context.Users.Find ( id );
+            return _context.User.Find ( id );
         }
 
-        public User Create ( User user, string password )
+        public Users Create ( Users user, string password )
         {
             // validation
             if(string.IsNullOrWhiteSpace ( password ))
@@ -90,7 +90,7 @@ namespace ERPSmArtLock.Services
         }
 
 
-       public User Update ( User userParam, string password = null )
+       public Users Update ( Users userParam, string password = null )
         {
             var user = _context.Users.Find ( userParam.Id );
 
