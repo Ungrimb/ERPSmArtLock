@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BuildingList } from '@app/models/buildingList';
-import { BuildingService } from '../../modules/buildings/services/Building.service';
+import { BuildingService } from '../../modules/buildings/services/building.service';
 
 
 @Component({

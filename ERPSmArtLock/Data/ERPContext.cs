@@ -30,7 +30,7 @@ namespace ERPSmArtLock.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySQL("server=lhcp1043.webapps.net;user=ge24skod_root;password=SmartLock123$%^;persistsecurityinfo=True;database=ge24skod_smart_lock_2");
+                optionsBuilder.UseMySQL("server=lhcp1043.webapps.net;user=ge24skod_root;password=SmartLock123$%^;persistsecurityinfo=True;database=ge24skod_smart_lock_2; convert zero datetime = True");
             }
         }
 
@@ -411,16 +411,16 @@ namespace ERPSmArtLock.Data
                 entity.ToTable("users");
 
                 entity.Property(e => e.Id)
-                    .HasColumnName("userId")
+                    .HasColumnName("Id")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.AccountStatus)
-                    .HasColumnName("account_status")
+                    .HasColumnName("AccountStatus")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.AdditionalInfo)
                     .IsRequired()
-                    .HasColumnName("additional_info")
+                    .HasColumnName("AdditionalInfo")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.Address)
@@ -430,12 +430,12 @@ namespace ERPSmArtLock.Data
 
                 entity.Property(e => e.BackImage)
                     .IsRequired()
-                    .HasColumnName("back_image")
+                    .HasColumnName("backimage")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.CardPhoto)
                     .IsRequired()
-                    .HasColumnName("card_photo");
+                    .HasColumnName("cardphoto");
 
                 entity.Property(e => e.City)
                     .IsRequired()
@@ -444,11 +444,11 @@ namespace ERPSmArtLock.Data
 
                 entity.Property(e => e.CityOfBirth)
                     .IsRequired()
-                    .HasColumnName("city_of_birth")
+                    .HasColumnName("cityofbirth")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.CodeVerify)
-                    .HasColumnName("code_verify")
+                    .HasColumnName("codeverify")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.Country)
@@ -458,27 +458,27 @@ namespace ERPSmArtLock.Data
 
                 entity.Property(e => e.CountryOfBirth)
                     .IsRequired()
-                    .HasColumnName("country_of_birth")
+                    .HasColumnName("countryofbirth")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.CountryTaxLiability)
                     .IsRequired()
-                    .HasColumnName("country_tax_liability")
+                    .HasColumnName("countrytaxliability")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.DeviceToken)
                     .IsRequired()
-                    .HasColumnName("device_token")
+                    .HasColumnName("devicetoken")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.DeviceType)
-                    .HasColumnName("device_type")
+                    .HasColumnName("devicetype")
                     .HasColumnType("int(11)")
                     .HasComment("1-android / 2-ios");
 
                 entity.Property(e => e.DinNie)
                     .IsRequired()
-                    .HasColumnName("din_nie")
+                    .HasColumnName("dinnie")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.Dob)
@@ -491,12 +491,12 @@ namespace ERPSmArtLock.Data
                     .HasMaxLength(255);
 
                 entity.Property(e => e.EmailStatus)
-                    .HasColumnName("email_status")
+                    .HasColumnName("emailstatus")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.FrontImage)
                     .IsRequired()
-                    .HasColumnName("front_image")
+                    .HasColumnName("frontimage")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.Gender)
@@ -506,12 +506,12 @@ namespace ERPSmArtLock.Data
 
                 entity.Property(e => e.HouseNo)
                     .IsRequired()
-                    .HasColumnName("house_no")
+                    .HasColumnName("houseno")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.ImeiNo)
                     .IsRequired()
-                    .HasColumnName("imei_no")
+                    .HasColumnName("imeino")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.IsDeleted)
@@ -519,22 +519,22 @@ namespace ERPSmArtLock.Data
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.IsFaceEnabled)
-                    .HasColumnName("is_face_enabled")
+                    .HasColumnName("isfaceenabled")
                     .HasColumnType("int(11)")
                     .HasComment("1-yes/0-no");
 
                 entity.Property(e => e.IsFingerprintEnabled)
-                    .HasColumnName("is_fingerprint_enabled")
+                    .HasColumnName("isfingerprintenabled")
                     .HasColumnType("int(11)")
                     .HasComment("1-yes/0-no");
 
                 entity.Property(e => e.IsMobileVerified)
-                    .HasColumnName("is_mobile_verified")
+                    .HasColumnName("ismobileverified")
                     .HasColumnType("int(11)");
 
                 entity.Property(e => e.MobileOtp)
                     .IsRequired()
-                    .HasColumnName("mobile_otp")
+                    .HasColumnName("mobileotp")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.Nationality)
@@ -549,7 +549,7 @@ namespace ERPSmArtLock.Data
 
                 entity.Property(e => e.PassportImage)
                     .IsRequired()
-                    .HasColumnName("passport_image")
+                    .HasColumnName("passportimage")
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.Phone)
@@ -568,27 +568,27 @@ namespace ERPSmArtLock.Data
                     .HasColumnType("mediumtext");
 
                 entity.Property(e => e.ProfileStatus)
-                    .HasColumnName("profile_status")
+                    .HasColumnName("profilestatus")
                     .HasColumnType("int(11)")
                     .HasComment("0-pending/1-verified/2-rejected");
 
-                entity.Property(e => e.Pwd)
+                entity.Property(e => e.pwd)
                     .IsRequired()
                     .HasColumnName("pwd")
                     .HasMaxLength(255);
 
                 entity.Property(e => e.RandomCode)
                     .IsRequired()
-                    .HasColumnName("random_code");
+                    .HasColumnName("randomcode");
 
-                entity.Property(e => e.UserName)
+                entity.Property(e => e.userName)
                     .IsRequired()
                     .HasColumnName("userName")
                     .HasMaxLength(255);
 
                 entity.Property(e => e.VerificationCode)
                     .IsRequired()
-                    .HasColumnName("verification_code")
+                    .HasColumnName("verificationcode")
                     .HasColumnType("mediumtext");
             });
 

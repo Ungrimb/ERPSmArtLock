@@ -16,7 +16,7 @@ namespace ERPSmArtLock.Helpers
         {
             if(user == null) return null;
 
-            user.Pwd = null;
+            user.pwd = null;
             return user;
         }
     }

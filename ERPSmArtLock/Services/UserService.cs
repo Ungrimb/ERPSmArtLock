@@ -1,15 +1,19 @@
 ﻿using ERPSmArtLock.Data;
 using ERPSmArtLock.Entities;
 using ERPSmArtLock.Helpers;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using BCrypt.Net;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Org.BouncyCastle.Crypto.Generators;
 
 namespace ERPSmArtLock.Services
 {
@@ -34,14 +38,28 @@ namespace ERPSmArtLock.Services
         }
        public Users Authenticate ( string username, string password )
         {
+            
+            var users = _context.Set<Users>().ToList();
 
-            if(string.IsNullOrEmpty ( username ) || string.IsNullOrEmpty ( password ))
+            if (string.IsNullOrEmpty ( username ) || string.IsNullOrEmpty ( password ))
                 return null;
 
-            var user = _context.Users.SingleOrDefault ( x => x.UserName == username && x.Pwd == password );
+            //var user = _context.Users.SingleOrDefault ( x => x.userName == username && x.pwd == password );
+            var user = users.SingleOrDefault(x => x.userName == username);
+
+            bool passwordValid = BCrypt.Net.BCrypt.Verify(password,user.pwd);
+            if (passwordValid == true)
+            {
+                Debug.WriteLine(password + " is valid.");
+            }
+            else
+            {
+                Debug.WriteLine(password + " is NOT valid.");
+                user = null;
+            }
 
             // check if username exists
-            if(user == null)
+            if (user == null)
                 return null;
 
             // authentication successful so generate JWT Token
@@ -49,19 +67,20 @@ namespace ERPSmArtLock.Services
             var key = Encoding.ASCII.GetBytes ( _appSettings.Secret );
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity ( new Claim[]
+                Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, user.Id.ToString()),
                     new Claim(ClaimTypes.Role, user.Role)
                 }),
-                Expires = DateTime.UtcNow.AddDays ( 7 ),
-                SigningCredentials = new SigningCredentials ( new SymmetricSecurityKey ( key ), SecurityAlgorithms.HmacSha256Signature )
+                Expires = DateTime.UtcNow.AddDays(7),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
-            var token = tokenHandler.CreateToken ( tokenDescriptor ) ;
-            user.ImeiNo = tokenHandler.WriteToken ( token );
-        
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            user.ImeiNo = tokenHandler.WriteToken(token);
+
             return user.WithoutPassword();
+            //return null;
         }
 
         public IEnumerable<Users> GetAll()
@@ -80,8 +99,8 @@ namespace ERPSmArtLock.Services
             if(string.IsNullOrWhiteSpace ( password ))
                 throw new AppException ( "Password is required" );
 
-            if(_context.Users.Any ( x => x.UserName == user.UserName ))
-                throw new AppException ( "Username \"" + user.UserName + "\" is already taken" );
+            if(_context.Users.Any ( x => x.userName == user.userName ))
+                throw new AppException ( "Username \"" + user.userName + "\" is already taken" );
 
             _context.Users.Add ( user );
             _context.SaveChanges ();
@@ -98,13 +117,13 @@ namespace ERPSmArtLock.Services
                 throw new AppException ( "User not found" );
 
             // update username if it has changed
-            if(!string.IsNullOrWhiteSpace ( userParam.UserName ) && userParam.UserName != user.UserName)
+            if(!string.IsNullOrWhiteSpace ( userParam.userName ) && userParam.userName != user.userName)
             {
                 // throw error if the new username is already taken
-                if(_context.Users.Any ( x => x.UserName == userParam.UserName ))
-                    throw new AppException ( "Username " + userParam.UserName + " is already taken" );
+                if(_context.Users.Any ( x => x.userName == userParam.userName ))
+                    throw new AppException ( "Username " + userParam.userName + " is already taken" );
 
-                user.UserName = userParam.UserName;
+                user.userName = userParam.userName;
                 user.Role = userParam.Role;
             }
 
