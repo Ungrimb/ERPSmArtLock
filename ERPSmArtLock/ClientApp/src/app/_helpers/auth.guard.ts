@@ -10,22 +10,21 @@ export class AuthGuard implements CanActivate {
         private authenticationService: AuthenticationService
     ) { }
 
-    // tslint:disable-next-line: typedef
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const user = this.authenticationService.userValue;
-        if (user) {
-            // check if route is restricted by role
-            if (route.data.roles && route.data.roles.indexOf(user.role) === -1) {
-                // role not authorised so redirect to home page
+        const currentUser = this.authenticationService.currentUserValue;
+        if (currentUser) {
+            // check si restringe por rol
+            if (route.data.roles && route.data.roles.indexOf(currentUser.role) === -1) {
+                // rol no autorizado, se redirige a la pagina principal
                 this.router.navigate(['/']);
                 return false;
             }
 
-            // authorised so return true
+            // autorizados devuelve true
             return true;
         }
 
-        // not logged in so redirect to login page with the return url
+        // no registrados redigidos al login
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
         return false;
     }

@@ -1,13 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { BuildingList } from '@app/models/buildingList';
+import { Building } from '@app/models/building';
 @Component({
   selector: 'app-carrousel',
   templateUrl: './carrousel.component.html',
   styleUrls: ['./carrousel.component.scss']
 })
 export class CarrouselComponent implements OnInit {
-  @Input()  buildingLists: BuildingList[] = [];
+  @Input()  building: Building[] = [];
 
   constructor() { }
 

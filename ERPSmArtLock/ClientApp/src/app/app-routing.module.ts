@@ -14,10 +14,10 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: [Role.Admin] } },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  // {
-  //   path: 'building',
-  //   loadChildren: () => import('./modules/buildings/building.module').then(m => m.BuildingModule)
-  // },
+  {
+    path: 'building',
+    loadChildren: () => import('./modules/buildings/building.module').then(m => m.BuildingModule)
+  },
   // {
   //   path: 'inventory',
   //   loadChildren: () => import('./modules/inventory/inventory.module').then(m => m.InventoryModule)

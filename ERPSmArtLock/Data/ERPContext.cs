@@ -17,7 +17,7 @@ namespace ERPSmArtLock.Data
 
         public virtual DbSet<Admin> Admin { get; set; }
         public virtual DbSet<AllowedInfo> AllowedInfo { get; set; }
-        public virtual DbSet<BuildingList> BuildingList { get; set; }
+        public virtual DbSet<Building> Building { get; set; }
         public virtual DbSet<Documents> Documents { get; set; }
         public virtual DbSet<EventList> EventList { get; set; }
         public virtual DbSet<LockList> LockList { get; set; }
@@ -146,7 +146,7 @@ namespace ERPSmArtLock.Data
                     .HasMaxLength(255);
             });
 
-            modelBuilder.Entity<BuildingList>(entity =>
+            modelBuilder.Entity<Building>(entity =>
             {
                 entity.HasKey(e => e.Id)
                     .HasName("PRIMARY");

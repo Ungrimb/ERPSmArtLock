@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Location } from '@angular/common';
 
-import { BuildingList } from '@app/models/buildingList';
+import { Building } from '@app/models/building';
 import { BuildingService } from '../../services/building.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { BuildingService } from '../../services/building.service';
 export class BuildingAddComponent implements OnInit {
 
   buildingForm: FormGroup;
-  building: BuildingList;
+  building: Building;
 
   constructor(
     private buildingService: BuildingService,
@@ -36,9 +36,9 @@ export class BuildingAddComponent implements OnInit {
   }
 
   create(): void {
-    const buildingList: BuildingList = Object.assign({}, this.buildingForm.value);
-    console.log(buildingList);
-    this.buildingService.addBuilding(buildingList)
+    const building: Building = Object.assign({}, this.buildingForm.value);
+    console.log(building);
+    this.buildingService.addBuilding(building)
     .subscribe (() => this.goBack());
   }
 

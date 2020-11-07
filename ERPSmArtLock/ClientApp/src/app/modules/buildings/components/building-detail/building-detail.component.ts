@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { BuildingService } from '../../services/building.service';
-import { BuildingList } from '@app/models/buildingList';
+import { Building } from '@app/models/building';
 
 @Component({
   selector: 'app-building-detail',
@@ -11,7 +11,7 @@ import { BuildingList } from '@app/models/buildingList';
   styleUrls: ['./building-detail.component.scss']
 })
 export class BuildingDetailComponent implements OnInit {
-  buildingList: BuildingList;
+  building: Building;
 
   constructor(
      private route: ActivatedRoute,
@@ -25,8 +25,8 @@ export class BuildingDetailComponent implements OnInit {
 
   get(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    this.buildingService.getBuilding(id)
-      .subscribe(buildingList => this.buildingList = buildingList);
+    this.buildingService.getOneBuilding(id)
+      .subscribe(building => this.building = building);
   }
 
   goBack(): void {

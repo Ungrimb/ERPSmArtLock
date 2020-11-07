@@ -11,8 +11,8 @@ import { Users } from '@app/models/users';
 export class AuthenticationService {
     private url: string;
     private baseUrl: string;
-    private userSubject: BehaviorSubject<Users>;
-    public user: Observable<Users>;
+    private currentUserSubject: BehaviorSubject<Users>;
+    public currentUser: Observable<Users>;
 
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,24 +22,25 @@ export class AuthenticationService {
         private router: Router,
         private http: HttpClient
         ){
-            this.userSubject =  new BehaviorSubject<Users>(JSON.parse(localStorage.getItem('user')));
-            this.user = this.userSubject.asObservable();
+            this.currentUserSubject =  new BehaviorSubject<Users>(JSON.parse(localStorage.getItem('currentUser')));
+            this.currentUser = this.currentUserSubject.asObservable();
             this.url = 'https://localhost:44301/api/users/authenticate';
             this.baseUrl = 'https://localhost:44301/api/users/register';
         }
-    public get userValue(): Users {
-        return this.userSubject.value;
+    public get currentUserValue(): Users {
+        return this.currentUserSubject.value;
     }
 
     // tslint:disable-next-line: typedef
     login(username: string, password: string){
-        return this.http.post<Users>(this.url, {username, password}, this.httpOptions)
+      return this.http.post<Users>(this.url, { username, password },this.httpOptions)
         .pipe(map(user => {
-             // store user details and jwt token in local storage to keep user logged in between page refreshes
-             localStorage.setItem('user', JSON.stringify(user));
-             this.userSubject.next(user);
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.currentUserSubject.next(user);
              return user;
-        }));
+        }
+        ));
     }
 
     // tslint:disable-next-line: typedef
@@ -49,8 +50,8 @@ export class AuthenticationService {
     // tslint:disable-next-line: typedef
     logout(){
         // remove user from Local storage to log user out
-        localStorage.removeItem('user');
-        this.userSubject.next(null);
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
         this.router.navigate(['/login']);
     }
 }

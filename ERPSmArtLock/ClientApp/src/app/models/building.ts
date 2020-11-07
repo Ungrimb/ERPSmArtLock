@@ -1,4 +1,4 @@
-export interface BuildingList {
+export interface Building {
     BuildingId: number;
     BuildingOwnerId: number;
     BuildingOwnerEmail: string;

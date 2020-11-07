@@ -4,7 +4,7 @@ import { first } from 'rxjs/operators';
 import { Users } from '@app/models/users';
 import { AuthenticationService } from '@app/_services/authentication.service';
 import { UserService } from '@app/_services/user.service';
-import { BuildingList } from '@app/models/buildingList';
+import { Building } from '@app/models/building';
 import { BuildingService } from '../../../../modules/buildings/services/building.service';
 
 
@@ -17,19 +17,19 @@ export class SidebarComponent implements OnInit {
   loading = false;
   user: Users;
   userFromApi: Users;
-  buildingLists: BuildingList[];
+  building: Building[];
 
   constructor(
     private userService: UserService,
     private authenticationService: AuthenticationService,
     private buildingService: BuildingService
   ) {
-    this.user = this.authenticationService.userValue;
+    this.user = this.authenticationService.currentUserValue;
    }
 
   ngOnInit(): void {
     this.getUser();
-    this.getBuildings();
+    this.getBuilding();
   }
 
   getUser(): void{
@@ -41,11 +41,11 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  getBuildings(): void{
+  getBuilding(): void{
     // ASyncronous signature subscribe waith for the observable
     // The subscribe() method passes the emitted array to the callback
-    this.buildingService.getBuildings().subscribe(
-      response => {this.buildingLists = response; console.log(response); },
+    this.buildingService.getBuilding().subscribe(
+      response => {this.building = response; console.log(response); },
       error => {console.log('There was a problem to get buildings'); }
     );
   }

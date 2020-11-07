@@ -275,7 +275,7 @@ namespace ERPSmArtLock.Migrations
                     b.ToTable("allowed_info");
                 });
 
-            modelBuilder.Entity("ERPSmArtLock.Models.BuildingList", b =>
+            modelBuilder.Entity("ERPSmArtLock.Models.Building", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

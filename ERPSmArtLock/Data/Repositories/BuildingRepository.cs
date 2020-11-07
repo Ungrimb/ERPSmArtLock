@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ERPSmArtLock.Data.Repositories
 {
-    public class BuildingRepository : DataRepository<BuildingList, ERPContext>
+    public class BuildingRepository : DataRepository<Building, ERPContext>
     {
 
         private readonly ERPContext _context;
@@ -17,50 +17,50 @@ namespace ERPSmArtLock.Data.Repositories
             _context = context;
         }
 
-        public override async Task<List<BuildingList>> GetAll()
+        public override async Task<List<Building>> GetAll()
         {
-            return await _context.BuildingList
+            return await _context.Building
                 .ToListAsync();
         }
 
-        public override async Task<BuildingList> Get(int id)
+        public override async Task<Building> Get(int id)
         {
-            return await _context.BuildingList
+            return await _context.Building
                 .SingleOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<BuildingList> AddBuildingList(BuildingList buildingList)
+        public async Task<Building> AddBuilding(Building building)
         {
 
-            var newBuildingList = new BuildingList();
+            var newBuilding = new Building();
 
-            newBuildingList.BuildingName = buildingList.BuildingName;
-            newBuildingList.Description = buildingList.Description;
-            newBuildingList.OwnerName = buildingList.OwnerName;
-            newBuildingList.OwnerId = buildingList.OwnerId;
-            newBuildingList.OwnerEmail = buildingList.OwnerEmail;
-            newBuildingList.BuildingAddress = buildingList.BuildingAddress;
-            newBuildingList.BuildingImage = buildingList.BuildingImage;
-            newBuildingList.Lat = buildingList.Lat;
-            newBuildingList.Lng = buildingList.Lng;
-            newBuildingList.OwnerEmail = buildingList.OwnerEmail;
-            newBuildingList.Rooms = buildingList.Rooms;
-            newBuildingList.AllowedUsers = buildingList.AllowedUsers;
-            newBuildingList.VerificationCode = buildingList.VerificationCode;
-            newBuildingList.Status = buildingList.Status;
-            _context.Set<BuildingList>().Add(newBuildingList);
+            newBuilding.BuildingName = building.BuildingName;
+            newBuilding.Description = building.Description;
+            newBuilding.OwnerName = building.OwnerName;
+            newBuilding.OwnerId = building.OwnerId;
+            newBuilding.OwnerEmail = building.OwnerEmail;
+            newBuilding.BuildingAddress = building.BuildingAddress;
+            newBuilding.BuildingImage = building.BuildingImage;
+            newBuilding.Lat = building.Lat;
+            newBuilding.Lng = building.Lng;
+            newBuilding.OwnerEmail = building.OwnerEmail;
+            newBuilding.Rooms = building.Rooms;
+            newBuilding.AllowedUsers = building.AllowedUsers;
+            newBuilding.VerificationCode = building.VerificationCode;
+            newBuilding.Status = building.Status;
+            _context.Set<Building>().Add(newBuilding);
             await _context.SaveChangesAsync();
 
-            return newBuildingList;
+            return newBuilding;
         }
-        public async Task<ActionResult<BuildingList>> DeleteBuildingList([FromBody] int id)
+        public async Task<ActionResult<Building>> DeleteBuilding([FromBody] int id)
         {
-            var buildingList = await _context.BuildingList.FindAsync(id);
+            var building = await _context.Building.FindAsync(id);
 
-            _context.BuildingList.Remove(buildingList);
+            _context.Building.Remove(building);
             await _context.SaveChangesAsync();
 
-            return buildingList;
+            return building;
         }
 
     }

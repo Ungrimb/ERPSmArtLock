@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BuildingList } from '@app/models/buildingList';
+import { Building } from '@app/models/building';
 import { BuildingService } from '../../modules/buildings/services/building.service';
 
 
@@ -10,17 +10,17 @@ import { BuildingService } from '../../modules/buildings/services/building.servi
   styleUrls: [ './dashboard.component.scss' ]
 })
 export class DashboardComponent implements OnInit {
-  buildingLists: BuildingList[] = [];
+  building: Building[] = [];
 
   constructor(private buildingService: BuildingService) {}
 
   // tslint:disable-next-line: typedef
   ngOnInit() {
-    this.getBuildings();
+    this.getBuilding();
   }
 
-  getBuildings(): void {
-    this.buildingService.getBuildings()
-      .subscribe(buildings => this.buildingLists = buildings.slice(0, 4));
+  getBuilding(): void {
+    this.buildingService.getBuilding()
+      .subscribe(building => this.building = building.slice(0, 4));
   }
 }

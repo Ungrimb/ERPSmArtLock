@@ -2,9 +2,9 @@
 
     <nav class="navbar  navbar-expand-sm navbar-dark bg-dark">
         <a routerLink="/dashboard" class="nav-link text-white">Dashboard</a>
-        <a routerLink="/addemployee" class="nav-link text-white"><i class="fas fa-plus-circle"></i> Add Employees</a>
+        <a routerLink="/addbuilding" class="nav-link text-white"><i class="fas fa-plus-circle"></i> Add Buildings</a>
     </nav>
-    <h2 class="h2 text-center mt-2">Employees</h2>
+    <h2 class="h2 text-center mt-2">Buildings</h2>
     <div class="card-body" *ngIf="!isAdmini">
         <div class="alert alert-danger" role="alert">
             SORRY! This information is available just for Admin
@@ -14,7 +14,7 @@
         <table class="table table-bordered table-center">
             <thead>
                 <tr>
-                    <th>Employee Id</th>
+                    <th>Building Id</th>
                     <th>Name</th>
                     <th>Lastname</th>
                     <th>Job Position</th>
@@ -24,27 +24,27 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let employee of employees" class="employees">
-                    <td><span class="badge">{{employee.id}}</span></td>
-                    <a routerLink="/detail/{{employee.id}}">
-                        <td>{{employee.name}}</td>
+                <tr *ngFor="let b of building" class="building">
+                    <td><span class="badge">{{b.id}}</span></td>
+                    <a routerLink="/detail/{{b.id}}">
+                        <td>{{b.name}}</td>
                     </a>
 
-                    <td style="color:black;"> {{employee.lastName}}</td>
-                    <td>{{employee.positionJob}}</td>
-                    <td>{{employee.salary}} </td>
-                    <td>{{employee.userName}} </td>
-                    <td>{{employee.isAdmin}} </td>
+                    <td style="color:black;"> {{b.lastName}}</td>
+                    <td>{{b.positionJob}}</td>
+                    <td>{{b.salary}} </td>
+                    <td>{{b.userName}} </td>
+                    <td>{{b.isAdmin}} </td>
                     <td>
                         <ul>
                             <li class="list-inline-item">
 
-                                <a class="edit" routerLink="/update/{{employee.id}}">
+                                <a class="edit" routerLink="/update/{{b.id}}">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                                <button (click)="delete(employee.id)" class="btn-delete">
+                                <button (click)="delete(b.id)" class="btn-delete">
                              <i class="fas fa-trash"></i>Delete
                             </button>
                             </li>

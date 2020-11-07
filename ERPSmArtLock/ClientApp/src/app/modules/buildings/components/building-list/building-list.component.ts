@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BuildingList } from '@app/models/buildingList';
+import { Building } from '@app/models/building';
 
 import { BuildingService } from '../../services/building.service';
 
@@ -10,22 +10,22 @@ import { BuildingService } from '../../services/building.service';
 })
 export class BuildingListComponent implements OnInit {
 
-  // interface type BuildingList
-  buildings: BuildingList[];
+  // interface type Building
+  building: Building[];
   isAdmini = false;
 
  // Dependency injection private property
  constructor(private buildingService: BuildingService) { }
 
   ngOnInit(): void {
-    this.getBuildings();
+    this.getBuilding();
   }
 
-  getBuildings(): void{
+  getBuilding(): void{
     // ASyncronous signature subscribe waith for the observable
     // The subscribe() method passes the emitted array to the callback
-    this.buildingService.getBuildings().subscribe(
-      response => {this.buildings = response; console.log(response); this.isAdmini = true; },
+    this.buildingService.getBuilding().subscribe(
+      response => {this.building = response; console.log(response); this.isAdmini = true; },
       error => {console.log('There was a problem to get buildings'); }
     );
   }

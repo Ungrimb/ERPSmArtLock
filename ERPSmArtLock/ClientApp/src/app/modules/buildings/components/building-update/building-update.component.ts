@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, FormControl } from '@angular/forms';
 import { Location } from '@angular/common';
 
-import { BuildingList } from '@app/models/buildingList';
+import { Building } from '@app/models/building';
 import { BuildingService } from '../../services/building.service';
 
 
@@ -16,8 +16,8 @@ import { BuildingService } from '../../services/building.service';
 export class BuildingUpdateComponent implements OnInit {
 
   buildingForm: FormGroup;
-  buildingListId: any;
-  buildingList: BuildingList;
+  buildingId: any;
+  building: Building;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,28 +35,28 @@ export class BuildingUpdateComponent implements OnInit {
       Lng:  ['', Validators.required]
     });
 
-    this.getBuilding();
+    this.getOneBuilding();
 
     }
 
-    upData(buildingList: BuildingList): any{
+    upData(building: Building): any{
       this.buildingForm.patchValue({
-        Name: buildingList.BuildingName,
-        Address: buildingList.BuildingAddress,
-        Description: buildingList.BuildingDescription,
-        Image: buildingList.BuildingImage,
-        Lat: buildingList.BuildingLat,
-        Lng: buildingList.BuildingLng
+        Name: building.BuildingName,
+        Address: building.BuildingAddress,
+        Description: building.BuildingDescription,
+        Image: building.BuildingImage,
+        Lat: building.BuildingLat,
+        Lng: building.BuildingLng
     });
   }
 
-    getBuilding(): void {
+    getOneBuilding(): void {
       const id = +this.route.snapshot.paramMap.get('id');
-      this.buildingListId = id;
-      this.buildingService.getBuilding(this.buildingListId.toString())
-        .subscribe(buildingList => {
-          this.buildingList = buildingList;
-          this.upData(buildingList);
+      this.buildingId = id;
+      this.buildingService.getOneBuilding(this.buildingId.toString())
+        .subscribe(building => {
+          this.building = building;
+          this.upData(building);
         });
     }
     goBack(): void {
@@ -64,15 +64,15 @@ export class BuildingUpdateComponent implements OnInit {
     }
 
     update(): void{
-      const buildingList: BuildingList = Object.assign({}, this.buildingForm.value);
+      const building: Building = Object.assign({}, this.buildingForm.value);
       const id = +this.route.snapshot.paramMap.get('id');
-      this.buildingListId = id;
+      this.buildingId = id;
       // tslint:disable-next-line: radix
-      this.buildingListId = parseInt( this.buildingListId );
-      console.log( typeof this.buildingListId);
+      this.buildingId = parseInt( this.buildingId );
+      console.log( typeof this.buildingId);
 
-      buildingList.BuildingId = this.buildingListId;
-      this.buildingService.updateBuilding(buildingList)
+      building.BuildingId = this.buildingId;
+      this.buildingService.updateBuilding(building)
       .subscribe (() => this.goBack());
     }
 }
