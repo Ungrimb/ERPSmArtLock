@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Building } from '@app/models/building';
+import { Location } from '@angular/common';
 
 import { BuildingService } from '../../services/building.service';
 
 @Component({
-  selector: 'app-building',
+  selector: 'app-building-list',
   templateUrl: './building-list.component.html',
   styleUrls: ['./building-list.component.scss']
 })
@@ -15,10 +16,16 @@ export class BuildingListComponent implements OnInit {
   isAdmini = false;
 
  // Dependency injection private property
- constructor(private buildingService: BuildingService) { }
+ constructor(
+   private buildingService: BuildingService,
+   private location: Location) { }
 
   ngOnInit(): void {
     this.getBuilding();
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   getBuilding(): void{

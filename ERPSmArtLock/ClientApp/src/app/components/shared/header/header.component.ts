@@ -12,7 +12,7 @@ import { Role } from '../../../models/enums/role';
 })
 export class HeaderComponent{
   currentUser: Users;
-  title = 'Enterprise Resources Planning';
+  title = 'SmArtLock Database';
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService) {

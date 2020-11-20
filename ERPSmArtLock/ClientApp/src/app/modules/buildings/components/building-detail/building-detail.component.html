@@ -1,14 +1,14 @@
-<div class="card mx-auto mt-3" style="width: 18rem;" *ngIf="building">
+<div class="card mx-auto mt-3" style="width: 50%;" *ngIf="building">
     <div class="card-header">
         Building
     </div>
     <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted"><span> <strong>Id: </strong></span>{{building.Id}}</h6>
-        <div><span><strong>Name: </strong> </span>{{building.Name}}</div>
-        <!--<p class="card-text"><span><strong>Lastame: </strong> </span>{{building.lastName}}</p>
-        <div><span><strong>Position Job: </strong> </span>{{building.positionJob}}</div>
-        <div><span><strong>Salary: </strong> </span>{{building.salary}}</div>
-        <div><span><strong>Username: </strong> </span>{{building.userName}}</div>-->
-        <button type="button" class="btn btn-info" (click)="goBack()">go back</button>
+        <h6 class="card-subtitle mb-2 text-muted"><span> <strong>Id: </strong></span>{{building.id}}</h6>
+        <div><span><strong>Name: </strong> </span>{{building.buildingName}}</div>
+        <div><span><strong>Owner Email: </strong> </span>{{building.ownerName}}</div>
+        <div><span><strong>Address: </strong> </span>{{building.buildingAddress}}</div>
+        <div><span><strong>Rooms: </strong> </span>{{building.rooms}}</div>
+        <div><span><img class="image_building" width="150px" src="https://server.smartlock.cat/img/{{building.buildingImage}}" alt="image picture"></span></div>
+        <button type="button" class="btn btn-info" (click)="goBack()">Back</button>
     </div>
 </div>

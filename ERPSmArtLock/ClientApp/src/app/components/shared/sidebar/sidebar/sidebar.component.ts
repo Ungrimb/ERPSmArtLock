@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 import { Users } from '@app/models/users';
 import { AuthenticationService } from '@app/_services/authentication.service';
@@ -13,6 +15,7 @@ import { BuildingService } from '../../../../modules/buildings/services/building
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
+
 export class SidebarComponent implements OnInit {
   loading = false;
   user: Users;
@@ -32,13 +35,13 @@ export class SidebarComponent implements OnInit {
     this.getBuilding();
   }
 
-  getUser(): void{
-    this.loading = true;
-    this.userService.getById(this.user.id).pipe(first()).subscribe(user => {
-        this.loading = false;
-        this.userFromApi = user;
-        console.log(this.userFromApi);
-    });
+  getUser(): void {
+    //this.loading = true;
+    //this.userService.getById(this.user.id).pipe(first()).subscribe(user => {
+    this.loading = false;
+    this.userFromApi = this.user;
+    console.log(this.userFromApi);
+    //});
   }
 
   getBuilding(): void{

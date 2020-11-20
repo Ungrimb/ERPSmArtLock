@@ -8,7 +8,7 @@ import { BuildingUpdateComponent } from './components/building-update/building-u
 
 const routes: Routes = [
     { path: 'detail/:id', component: BuildingDetailComponent },
-    { path: 'building', component: BuildingListComponent },
+    { path: 'buildings', component: BuildingListComponent },
     { path: 'addbuilding', component: BuildingAddComponent },
     { path: 'update/:id', component: BuildingUpdateComponent }
 ];
