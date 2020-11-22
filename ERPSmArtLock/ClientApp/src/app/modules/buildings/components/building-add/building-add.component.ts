@@ -23,11 +23,10 @@ export class BuildingAddComponent implements OnInit {
   ngOnInit(): void {
     this.buildingForm = this.formBuilder.group({
       Name: ['', Validators.required],
-      LastName: ['', Validators.required],
-      PositionJob: ['', Validators.required],
-      Salary: ['', Validators.required],
-      UserName:  ['', Validators.required],
-      Password:  ['', Validators.required]
+      address: ['', Validators.required],
+      Description: ['', Validators.required],
+      ownerEmail: ['', Validators.required],
+      Rooms:  ['', Validators.required]
     });
   }
 

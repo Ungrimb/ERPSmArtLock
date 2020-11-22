@@ -1,7 +1,7 @@
 import { Time } from '@angular/common';
 import { Timestamp } from 'rxjs/internal/operators/timestamp';
 
-export interface lockList {
+export interface Device {
     id: number;
     ownerId: number;
     buildingId: number;

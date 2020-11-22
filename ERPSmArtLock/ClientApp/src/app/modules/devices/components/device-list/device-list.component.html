@@ -2,9 +2,9 @@
 
     <nav class="navbar  navbar-expand-sm navbar-dark bg-dark">
         <a routerLink="/dashboard" class="nav-link text-white">Dashboard</a>
-        <a routerLink="/addbuilding" class="nav-link text-white"><i class="fas fa-plus-circle"></i> Add Buildings</a>
+        <a routerLink="/adddevice" class="nav-link text-white"><i class="fas fa-plus-circle"></i> Add Device</a>
     </nav>
-    <h2 class="h2 text-center mt-2">Buildings</h2>
+    <h2 class="h2 text-center mt-2">Devices</h2>
     <div class="card-body" *ngIf="!isAdmini">
         <div class="alert alert-danger" role="alert">
             SORRY! This information is available just for Admin
@@ -14,32 +14,33 @@
         <table class="table table-bordered table-center">
             <thead>
                 <tr>
-                    <th>Building Id</th>
-                    <th>Building Name</th>
-                    <th>Owner Email</th>
-                    <th>Rooms</th>
+                    <th>Device Id</th>
+                    <th>Device Number</th>
+                    <th>Room Name</th>
+                    <th>Device Type</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let b of building" class="building">
-                    <td><span class="badge">{{b.id}}</span></td>
-                    <a routerLink="/detail/{{b.id}}">
-                        <td>{{b.buildingName}}</td>
+                <tr *ngFor="let d of device" class="device">
+                    <td><span class="badge">{{d.id}}</span></td>
+                    <a routerLink="/detailDevice/{{d.id}}">
+                        <td>{{d.id}}</td>
                     </a>
 
-                    <td style="color:black;"> {{b.ownerName}}</td>
-                    <td>{{b.rooms}}</td>
+                    <td style="color:black;"> {{d.qrcode}}</td>
+                    <td>{{d.roomName}}</td>
+                    <td>{{d.allowedUsers}}</td>
                     <td>
                         <ul>
                             <li class="list-inline-item">
 
-                                <a class="edit" routerLink="/update/{{b.id}}">
+                                <a class="edit" routerLink="/update/{{d.id}}">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
                             </li>
                             <li class="list-inline-item">
-                                <button (click)="delete(b.id)" class="btn-delete">
+                                <button (click)="delete(d.id)" class="btn-delete">
                              <i class="fas fa-trash"></i>Delete
                             </button>
                             </li>

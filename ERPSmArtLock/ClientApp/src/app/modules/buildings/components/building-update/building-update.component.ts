@@ -28,11 +28,10 @@ export class BuildingUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.buildingForm = this.formBuilder.group({
       Name: ['', Validators.required],
-      Address: ['', Validators.required],
+      address: ['', Validators.required],
       Description: ['', Validators.required],
-      Image: ['', Validators.required],
-      Lat:  ['', Validators.required],
-      Lng:  ['', Validators.required]
+      ownerEmail: ['', Validators.required],
+      Rooms:  ['', Validators.required]
     });
 
     this.getOneBuilding();
@@ -44,9 +43,8 @@ export class BuildingUpdateComponent implements OnInit {
         Name: building.BuildingName,
         Address: building.BuildingAddress,
         Description: building.BuildingDescription,
-        Image: building.BuildingImage,
-        Lat: building.BuildingLat,
-        Lng: building.BuildingLng
+        ownerEmail: building.BuildingOwnerEmail,
+        Rooms: building.BuildingRooms
     });
   }
 

@@ -18,10 +18,10 @@ const routes: Routes = [
     path: 'building',
     loadChildren: () => import('./modules/buildings/building.module').then(m => m.BuildingModule)
   },
-  // {
-  //   path: 'inventory',
-  //   loadChildren: () => import('./modules/inventory/inventory.module').then(m => m.InventoryModule)
-  // },
+  {
+    path: 'devices',
+    loadChildren: () => import('./modules/devices/devices.module').then(m => m.DevicesModule)
+  },
   // {
   //   path: 'sales',
   //   loadChildren: () => import('./modules/sales/components/orders.module').then(m => m.OrdersModule)
