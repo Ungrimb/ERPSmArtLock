@@ -8,7 +8,7 @@ import { DeviceUpdateComponent } from './components/device-update/device-update.
 
 const routes: Routes = [
     { path: 'deviceDetail/:id', component: DeviceDetailComponent },
-    { path: 'devices', component: DeviceListComponent },
+    { path: 'inventory', component: DeviceListComponent },
     { path: 'adddevice', component: DeviceAddComponent },
     { path: 'updateDevice/:id', component: DeviceUpdateComponent }
 ];

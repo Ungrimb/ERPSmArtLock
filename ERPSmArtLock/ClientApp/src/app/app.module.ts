@@ -19,6 +19,7 @@ import { SidebarComponent } from './components/shared/sidebar/sidebar/sidebar.co
 
 // Modules
 import { BuildingModule } from './modules/buildings/building.module';
+import { DevicesModule } from './modules/devices/devices.module';
 import { OrdersModule } from './modules/sales/components/orders.module';
 import { CrmModule } from './modules/crm/crm.module';
 
@@ -43,6 +44,7 @@ import { CrmModule } from './modules/crm/crm.module';
     ReactiveFormsModule,
     BuildingModule,
     OrdersModule,
+    DevicesModule,
     CrmModule
   ],
   providers: [
