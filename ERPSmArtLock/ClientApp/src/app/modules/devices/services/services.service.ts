@@ -17,7 +17,7 @@ export class ServicesService {
    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
  };
   constructor(private http: HttpClient) {
-    this.url = 'https://localhost:44301/api/LockList';
+    this.url = 'https://localhost:44301/api/lockList';
    }
    // observer design pattern is a behavioral pattern.
 // This pattern is used when there is is one to many relationship between objects such is one is

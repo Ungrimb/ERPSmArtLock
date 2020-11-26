@@ -91,7 +91,7 @@ namespace ERPSmArtLock
             // scope DI for application services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<BuildingRepository>();
-            //services.AddScoped<EmployeeRepository>();
+            services.AddScoped<LockListRepository>();
             //services.AddScoped<AddressesRepository>();
             //services.AddScoped<MovementsRepository>();
             //services.AddScoped<OrderRepository>();

@@ -1,1 +1,14 @@
-<p>device-detail works!</p>
+<div class="card mx-auto mt-3" style="width: 50%;" *ngIf="devices">
+    <div class="card-header">
+        Device
+    </div>
+    <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted"><span> <strong>Id: </strong></span>{{devices.id}}</h6>
+        <div><span><strong>Name: </strong> </span>{{building.buildingName}}</div>
+        <div><span><strong>Owner Email: </strong> </span>{{building.ownerName}}</div>
+        <div><span><strong>Address: </strong> </span>{{building.buildingAddress}}</div>
+        <div><span><strong>Rooms: </strong> </span>{{building.rooms}}</div>
+        <div><span><img class="image_building" width="150px" src="https://server.smartlock.cat/img/{{building.buildingImage}}" alt="image picture"></span></div>
+        <button type="button" class="btn btn-info" (click)="goBack()">Back</button>
+    </div>
+</div>

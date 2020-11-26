@@ -17,20 +17,21 @@
                     <th>Device Id</th>
                     <th>Device Number</th>
                     <th>Room Name</th>
-                    <th>Device Type</th>
+                    <th>Allowed Users</th>
+                    <th>Building Id</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let d of device" class="device">
+                <tr *ngFor="let d of devices" class="device">
                     <td><span class="badge">{{d.id}}</span></td>
                     <a routerLink="/detailDevice/{{d.id}}">
-                        <td>{{d.id}}</td>
+                        <td>{{d.qrcode}}</td>
                     </a>
 
-                    <td style="color:black;"> {{d.qrcode}}</td>
-                    <td>{{d.roomName}}</td>
+                    <td style="color:black;"> {{d.roomName}}</td>
                     <td>{{d.allowedUsers}}</td>
+                    <td>{{d.buildingId}}</td>
                     <td>
                         <ul>
                             <li class="list-inline-item">
